@@ -16,7 +16,9 @@ func _spawn():
 	add_child(spawnee_instance)
 
 func _on_Timer_timeout():
-	_spawn()
 	_index += 1
 	if _index >= _amount:
 		$Timer.stop()
+		_index = 0
+		return
+	_spawn()
