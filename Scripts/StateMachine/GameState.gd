@@ -3,6 +3,7 @@ class_name GameState
 
 var fsm: StateMachine
 
+# warning-ignore:unused_signal
 signal state_entered
 
 func enter():
