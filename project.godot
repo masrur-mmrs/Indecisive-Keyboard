@@ -117,7 +117,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Indecisive keyboard"
-run/main_scene="res://MainScenes/Main.tscn"
+run/main_scene="res://UI elements/Main Menu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
