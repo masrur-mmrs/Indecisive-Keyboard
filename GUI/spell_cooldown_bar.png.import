@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/healthbar_overlay.png-1316ad0ccacf4027c7ed5a20625a71fe.stex"
+path="res://.import/spell_cooldown_bar.png-bfd6729a4a439b575abc0834e08cce68.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/healthbar_overlay.png"
-dest_files=[ "res://.import/healthbar_overlay.png-1316ad0ccacf4027c7ed5a20625a71fe.stex" ]
+source_file="res://GUI/spell_cooldown_bar.png"
+dest_files=[ "res://.import/spell_cooldown_bar.png-bfd6729a4a439b575abc0834e08cce68.stex" ]
 
 [params]
 

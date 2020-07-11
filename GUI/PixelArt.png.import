@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sword.png-74099914db95147a5c45eb13d8306944.stex"
+path="res://.import/PixelArt.png-43aeff9a19cef18a81a79ca32884f3ce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/sword.png"
-dest_files=[ "res://.import/sword.png-74099914db95147a5c45eb13d8306944.stex" ]
+source_file="res://GUI/PixelArt.png"
+dest_files=[ "res://.import/PixelArt.png-43aeff9a19cef18a81a79ca32884f3ce.stex" ]
 
 [params]
 

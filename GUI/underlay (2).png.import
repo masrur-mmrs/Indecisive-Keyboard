@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rose.png-ec7b060036e864d59da6ce772d89bd15.stex"
+path="res://.import/underlay (2).png-1e6423d239cfa6e506029cb657141510.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/rose.png"
-dest_files=[ "res://.import/rose.png-ec7b060036e864d59da6ce772d89bd15.stex" ]
+source_file="res://GUI/underlay (2).png"
+dest_files=[ "res://.import/underlay (2).png-1e6423d239cfa6e506029cb657141510.stex" ]
 
 [params]
 

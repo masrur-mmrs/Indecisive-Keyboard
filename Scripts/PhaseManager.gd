@@ -1,6 +1,9 @@
 class_name PhaseManager
 extends Timer
 
+signal updated_timer(duration)
+signal phase_signal(frame)
+
 enum Phase {
 	MOVEMENT,
 	COMBAT
@@ -33,6 +36,13 @@ func _start_timer():
 func _on_timeout():
 	if phase == Phase.MOVEMENT:
 		phase = Phase.COMBAT
+		emit_signal("phase_signal", 0)
 	else:
 		phase = Phase.MOVEMENT
+		emit_signal("phase_signal", 1)
 	_start_timer()
+
+
+# warning-ignore:unused_argument
+func _process(delta):
+	emit_signal("updated_timer", time_left)

@@ -1,9 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI/PauseBack.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Environment/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/WaveManager.gd" type="Script" id=5]
+[ext_resource path="res://GUI/healthbar_green.png" type="Texture" id=6]
+[ext_resource path="res://GUI/underlay (2).png" type="Texture" id=7]
+[ext_resource path="res://MainScenes/Healthbar.gd" type="Script" id=8]
+[ext_resource path="res://MainScenes/PhaseTime.gd" type="Script" id=9]
+[ext_resource path="res://GUI/phase_timer.png" type="Texture" id=10]
+[ext_resource path="res://GUI/PhaseSwitch1.png" type="Texture" id=11]
+[ext_resource path="res://GUI/PhaseSwitch2.png" type="Texture" id=12]
+[ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Navigation2D
@@ -11,6 +20,14 @@ script/source = "extends Navigation2D
 func _ready():
 	Globals.navigation = self
 "
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Main" type="Node"]
 
@@ -34,4 +51,51 @@ script = SubResource( 1 )
 
 [node name="Player" parent="World" instance=ExtResource( 2 )]
 position = Vector2( 750.678, 481.357 )
+
+[node name="PauseBack" parent="." instance=ExtResource( 3 )]
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Underlay" type="TextureRect" parent="Interface"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Healthbar" type="TextureProgress" parent="Interface"]
+margin_left = 21.3401
+margin_top = 22.2901
+margin_right = 338.34
+margin_bottom = 62.2901
+rect_scale = Vector2( 1.00369, 1.06589 )
+value = 100.0
+texture_progress = ExtResource( 6 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhaseTime" type="TextureProgress" parent="Interface"]
+margin_left = 471.724
+margin_top = 27.1603
+margin_right = 661.724
+margin_bottom = 67.1603
+value = 100.0
+texture_progress = ExtResource( 10 )
+tint_progress = Color( 1, 0.843137, 0, 1 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhaseIndicator" type="AnimatedSprite" parent="Interface"]
+position = Vector2( 414.234, 38.7707 )
+scale = Vector2( 0.447348, 0.447348 )
+frames = SubResource( 2 )
+script = ExtResource( 13 )
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
+[connection signal="phase_signal" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_signal"]
+[connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
+[connection signal="_health_updated" from="World/Player" to="Interface/Healthbar" method="_on_Player__health_updated"]
