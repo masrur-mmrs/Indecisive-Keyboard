@@ -1,5 +1,7 @@
 extends GameState
 
+var PHASE = PhaseManager.Phase.MOVEMENT
+
 export var speed = 500
 export var roll_duration = 0.67
 export var cooldown_duration = 0.5
@@ -8,6 +10,10 @@ var rolling = false
 var velocity: Vector2
 
 func enter():
+	if Globals.phase_manager.phase != PHASE:
+		fsm.back()
+		return
+	
 	if !$CooldownTimer.is_stopped():
 		fsm.back()
 		return

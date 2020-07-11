@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/BehaviorTree/Composite/Parallel.gd"
 }, {
+"base": "Timer",
+"class": "PhaseManager",
+"language": "GDScript",
+"path": "res://Scripts/PhaseManager.gd"
+}, {
 "base": "Task",
 "class": "RandomSelector",
 "language": "GDScript",
@@ -96,6 +101,7 @@ _global_script_class_icons={
 "Invert": "",
 "Leaf": "",
 "Parallel": "",
+"PhaseManager": "",
 "RandomSelector": "",
 "RandomSequence": "",
 "Repeat": "",
@@ -111,6 +117,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Indecisive keyboard"
+run/main_scene="res://MainScenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

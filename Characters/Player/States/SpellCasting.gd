@@ -1,5 +1,7 @@
 extends GameState
 
+var PHASE = PhaseManager.Phase.COMBAT
+
 export var duration := 0.25
 #export var cooldown_duration := 0.0
 export(PackedScene) var spell
@@ -10,6 +12,10 @@ signal spell_emitted(spell)
 #signal cooldown_timer(duration)
 
 func enter():
+	if Globals.phase_manager.phase != PHASE:
+		fsm.back()
+		return
+		
 	if !fsm.acting_body.fireball_unlocked:
 		fsm.back()
 		return

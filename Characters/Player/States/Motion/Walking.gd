@@ -1,10 +1,22 @@
 extends "res://Characters/Player/States/Motion/Motion.gd"
 
-export var move_speed = 150
-export var idle_state = "Idle"
 signal direction_changed(direction)
 
+var PHASE = PhaseManager.Phase.MOVEMENT
+
+export var move_speed = 150
+export var idle_state = "Idle"
+
+func enter():
+	if Globals.phase_manager.phase != PHASE:
+		fsm.back()
+		return
+
 func physics_process(_delta):
+	if Globals.phase_manager.phase != PHASE:
+		fsm.back()
+		return
+	
 	var move_vector := _get_move_vector()
 	
 	if move_vector == Vector2.ZERO:
