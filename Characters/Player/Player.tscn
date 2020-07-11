@@ -472,13 +472,9 @@ move_speed = 425
 
 [node name="SpellCasting" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
-cooldown_duration = 1.0
 spell = ExtResource( 10 )
 
 [node name="SpellTimer" type="Timer" parent="StateMachine/SpellCasting"]
-one_shot = true
-
-[node name="CooldownTimerS" type="Timer" parent="StateMachine/SpellCasting"]
 one_shot = true
 
 [node name="Dying" type="Node" parent="StateMachine"]

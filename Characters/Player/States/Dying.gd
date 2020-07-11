@@ -9,4 +9,4 @@ func enter():
 
 
 func _on_Timer_timeout():
-	get_tree().change_scene(death_menu)
+	var __ = get_tree().change_scene(death_menu)

@@ -35,7 +35,7 @@ func _set_initial_velocity():
 	if Input.is_action_pressed("move_down"):
 		move_vector.y += 1
 	if move_vector == Vector2.ZERO:
-		move_vector = Vector2.RIGHT
+		move_vector = Vector2.DOWN
 	velocity = move_vector.normalized() * speed
 
 func _exit():
