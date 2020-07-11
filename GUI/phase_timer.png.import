@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/healthbar_under.png-8a67694531e484b1e7f2ceb10bb3aafe.stex"
+path="res://.import/phase_timer.png-98a6b1008912d0efce67e80268cfd49a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/healthbar_under.png"
-dest_files=[ "res://.import/healthbar_under.png-8a67694531e484b1e7f2ceb10bb3aafe.stex" ]
+source_file="res://GUI/phase_timer.png"
+dest_files=[ "res://.import/phase_timer.png-98a6b1008912d0efce67e80268cfd49a.stex" ]
 
 [params]
 

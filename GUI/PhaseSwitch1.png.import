@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pause (1).png-c7ab280f7f0d333c9897d67c615bcf60.stex"
+path="res://.import/PhaseSwitch1.png-af732275c82868bbc529bd8f6d3fa4b3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/pause (1).png"
-dest_files=[ "res://.import/pause (1).png-c7ab280f7f0d333c9897d67c615bcf60.stex" ]
+source_file="res://GUI/PhaseSwitch1.png"
+dest_files=[ "res://.import/PhaseSwitch1.png-af732275c82868bbc529bd8f6d3fa4b3.stex" ]
 
 [params]
 
