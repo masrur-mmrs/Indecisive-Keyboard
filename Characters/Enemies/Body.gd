@@ -7,6 +7,8 @@ export var knockback = 700
 onready var health = start_health
 var invuln = false
 
+# warning-ignore:shadowed_variable
+# warning-ignore:shadowed_variable
 func hit(damage, knockback, hit_origin, self_hit=false):
 	if !invuln:
 		health -= damage

@@ -1,6 +1,6 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=39 format=2]
 
-[ext_resource path="res://Characters/Enemies/BehaviorTree/Leaves/CheckPlayerVisibility/CheckPlayerVisible.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/Enemies/BehaviorTree/Leaves/FindPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Enemies/MeleeEnemy/States/Move.gd" type="Script" id=3]
 [ext_resource path="res://Characters/Enemies/MeleeEnemy/Sprites/Melee_Enemy_death.png" type="Texture" id=4]
 [ext_resource path="res://Characters/Enemies/BehaviorTree/Leaves/MoveTowards/MoveTowards.gd" type="Script" id=5]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Characters/Enemies/MeleeEnemy/Sprite.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/BehaviorTree/Decorator/Invert.gd" type="Script" id=10]
 [ext_resource path="res://Characters/Enemies/BehaviorTree/Leaves/EndReached.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/BehaviorTree/Decorator/AlwaysFail.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/BehaviorTree/Leaf/EmitSignal.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/BehaviorTree/Composite/Parallel.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/StateMachine/StateMachine.gd" type="Script" id=16]
@@ -55,11 +54,11 @@ shader = SubResource( 3 )
 shader_param/flashing = false
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
@@ -118,12 +117,12 @@ region = Rect2( 192, 0, 32, 32 )
 animations = [ {
 "frames": [ SubResource( 5 ) ],
 "loop": false,
-"name": "Idle",
+"name": "Telegraph",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ) ],
 "loop": false,
-"name": "Telegraph",
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ) ],
@@ -177,20 +176,15 @@ script = ExtResource( 3 )
 [node name="ParallelSequence" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 15 )
 
-[node name="Invert" type="Node" parent="StateMachine/Move/ParallelSequence"]
-script = ExtResource( 10 )
-
-[node name="AlwaysFail" type="Node" parent="StateMachine/Move/ParallelSequence/Invert"]
-script = ExtResource( 12 )
-
-[node name="CheckPlayerVisibility" parent="StateMachine/Move/ParallelSequence/Invert/AlwaysFail" instance=ExtResource( 2 )]
+[node name="FindPlayer" type="Node" parent="StateMachine/Move/ParallelSequence"]
+script = ExtResource( 1 )
 
 [node name="FindPath" parent="StateMachine/Move/ParallelSequence" instance=ExtResource( 6 )]
 
-[node name="Invert2" type="Node" parent="StateMachine/Move/ParallelSequence"]
+[node name="Invert" type="Node" parent="StateMachine/Move/ParallelSequence"]
 script = ExtResource( 10 )
 
-[node name="EndReached" type="Node" parent="StateMachine/Move/ParallelSequence/Invert2"]
+[node name="EndReached" type="Node" parent="StateMachine/Move/ParallelSequence/Invert"]
 script = ExtResource( 11 )
 
 [node name="EmitSignalMove" type="Node" parent="StateMachine/Move/ParallelSequence"]

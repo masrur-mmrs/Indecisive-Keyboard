@@ -13,10 +13,10 @@ func enter():
 	velocity = (fsm.acting_body.global_position - hit_origin).normalized()
 	velocity *= fsm.context[knockback_str_key]
 
-func physics_process(delta):
+func physics_process(_delta):
 	velocity = fsm.acting_body.move_and_slide(velocity)
 	velocity *= damping
-	print(velocity.length())
+#	print(velocity.length())
 	if velocity.length() <= 20:
 		emit_signal("finished")
 		fsm.back()
