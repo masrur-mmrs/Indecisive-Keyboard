@@ -56,7 +56,7 @@
 1/z_index = 0
 
 [sub_resource type="DynamicFont" id=2]
-size = 82
+size = 400
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=3]
@@ -82,8 +82,8 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_top = 24.0
-margin_right = 1920.0
-margin_bottom = 1048.0
+margin_right = 3638.0
+margin_bottom = 1964.0
 rect_min_size = Vector2( 1920, 1024 )
 rect_scale = Vector2( 0.531455, 0.531455 )
 mouse_filter = 2
@@ -96,20 +96,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -960.0
-margin_top = -512.0
-margin_right = 800.0
-margin_bottom = 427.0
+margin_left = -1687.5
+margin_top = -955.0
+margin_right = 1441.5
+margin_bottom = 715.0
 rect_scale = Vector2( 1.06724, 1.02861 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="TitleScreen/Menu"]
-anchor_top = 0.126628
-anchor_bottom = 0.126628
-margin_right = 1760.0
-margin_bottom = 86.0
+margin_right = 3129.0
+margin_bottom = 415.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.741176, 0.764706, 0.780392, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
@@ -119,47 +117,52 @@ align = 1
 uppercase = true
 
 [node name="CenterRow" type="HBoxContainer" parent="TitleScreen/Menu"]
-margin_top = 90.0
-margin_right = 1760.0
-margin_bottom = 939.0
+margin_top = 419.0
+margin_right = 3129.0
+margin_bottom = 1670.0
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="TitleScreen/Menu/CenterRow"]
-margin_right = 878.0
-margin_bottom = 849.0
+margin_right = 1562.0
+margin_bottom = 1251.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="TitleScreen/Menu/CenterRow/CenterContainer"]
-margin_left = 387.0
-margin_top = 409.0
-margin_right = 490.0
-margin_bottom = 440.0
+margin_left = 729.0
+margin_top = 610.0
+margin_right = 832.0
+margin_bottom = 641.0
 text = "#logo goes here
 "
 
 [node name="Buttons" type="VBoxContainer" parent="TitleScreen/Menu/CenterRow"]
-margin_left = 882.0
-margin_right = 1760.0
-margin_bottom = 849.0
+margin_left = 1566.0
+margin_right = 3129.0
+margin_bottom = 1251.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
 [node name="NewGame" parent="TitleScreen/Menu/CenterRow/Buttons" instance=ExtResource( 1 )]
-margin_top = 354.0
-margin_right = 878.0
-margin_bottom = 414.0
+margin_top = 415.0
+margin_right = 1563.0
+margin_bottom = 615.0
+rect_min_size = Vector2( 360, 200 )
+rect_scale = Vector2( 1, 1 )
+toggle_mode = true
 shortcut_in_tooltip = false
 script = ExtResource( 6 )
 
 [node name="SceneChanger" parent="TitleScreen/Menu/CenterRow/Buttons/NewGame" instance=ExtResource( 9 )]
 
 [node name="QuitButton" parent="TitleScreen/Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
-margin_top = 434.0
-margin_right = 878.0
-margin_bottom = 494.0
+margin_top = 635.0
+margin_right = 1563.0
+margin_bottom = 835.0
+rect_min_size = Vector2( 360, 200 )
+rect_scale = Vector2( 1, 1 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 keep_pressed_outside = false
