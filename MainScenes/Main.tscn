@@ -142,6 +142,31 @@ position = Vector2( 750.678, 481.357 )
 
 [node name="Interface" type="CanvasLayer" parent="."]
 
+[node name="PhaseTime" type="TextureProgress" parent="Interface"]
+anchor_left = 0.5
+anchor_top = 0.226
+anchor_right = 0.5
+anchor_bottom = 0.226
+margin_left = 67.5
+margin_top = 8.58801
+margin_right = 257.5
+margin_bottom = 33.588
+value = 100.0
+texture_progress = ExtResource( 10 )
+tint_progress = Color( 1, 0.843137, 0, 1 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhaseIndicator" type="AnimatedSprite" parent="Interface/PhaseTime"]
+position = Vector2( -57.49, 11.6104 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 11 )
+animation = "movement"
+playing = true
+script = ExtResource( 13 )
+
 [node name="Underlay" type="TextureRect" parent="Interface"]
 margin_top = 1.90735e-06
 margin_right = 365.0
@@ -166,31 +191,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhaseTime" type="TextureProgress" parent="Interface"]
-anchor_left = 0.5
-anchor_top = 0.226
-anchor_right = 0.5
-anchor_bottom = 0.226
-margin_left = -95.0
-margin_right = 95.0
-margin_bottom = 25.0
-value = 100.0
-texture_progress = ExtResource( 10 )
-tint_progress = Color( 1, 0.843137, 0, 1 )
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PhaseIndicator" type="AnimatedSprite" parent="Interface/PhaseTime"]
-position = Vector2( -57.49, 11.6104 )
-scale = Vector2( 2, 2 )
-frames = SubResource( 11 )
-animation = "movement"
-frame = 1
-playing = true
-script = ExtResource( 13 )
-
 [node name="NewWaveLabel" type="Label" parent="Interface"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
@@ -210,11 +210,22 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/NewWaveLabel"]
 anims/fade_in_out = SubResource( 14 )
 
+[node name="UnderlayPhase" type="TextureRect" parent="Interface"]
+margin_left = 1016.18
+margin_top = 224.814
+margin_right = 1381.18
+margin_bottom = 302.814
+rect_scale = Vector2( 0.595081, 0.695919 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BgSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 autoplay = true
-[connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
+[connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
 [connection signal="phase_changed" from="GameLogic/PhaseManager" to="Interface/PhaseTime/PhaseIndicator" method="_on_PhaseManager_phase_changed"]
 [connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
