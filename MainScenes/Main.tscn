@@ -173,7 +173,7 @@ position = Vector2( 414.234, 38.7707 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "movement"
-frame = 3
+frame = 1
 playing = true
 script = ExtResource( 13 )
 
