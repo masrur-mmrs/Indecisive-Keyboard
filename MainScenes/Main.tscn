@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://GUI/PhaseSwitch2.png" type="Texture" id=12]
 [ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
 [ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sound/badasfuksong1.wav" type="AudioStream" id=15]
 
 [sub_resource type="GDScript" id=6]
 script/source = "extends AudioStreamPlayer
@@ -154,6 +155,10 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/NewWaveLabel"]
 anims/fade_in_out = SubResource( 4 )
+
+[node name="BgSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+autoplay = true
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
