@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://GUI/PixelArt.png" type="Texture" id=1]
 [ext_resource path="res://GUI/retry.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GUI/ReturnToMain.gd" type="Script" id=3]
+[ext_resource path="res://GUI/SceneChanger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Font/3X5_____.TTF" type="DynamicFontData" id=4]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+export var main_scene = \"res://MainScenes/Main.tscn\"
+
+func _on_Retry_button_down():
+	$SceneChanger.change_scene(main_scene)
+#	get_tree().paused = !get_tree().paused
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 4 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+func _enter_tree():
+	text = \"You got to wave \" + str(Globals.current_wave) + \"!\"
+"
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -32,4 +54,23 @@ margin_left = 724.611
 margin_top = 688.561
 margin_right = 1378.61
 margin_bottom = 1017.56
-script = ExtResource( 3 )
+script = SubResource( 3 )
+
+[node name="SceneChanger" parent="Retry" instance=ExtResource( 3 )]
+
+[node name="Wave count" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.187
+anchor_right = 0.5
+anchor_bottom = 0.187
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 1 )
+text = "You got up to wave #!"
+align = 1
+valign = 1
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="Retry" to="Retry" method="_on_Retry_button_down"]

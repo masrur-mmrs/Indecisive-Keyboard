@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI/PauseBack.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Environment/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/WaveManager.gd" type="Script" id=5]
-[ext_resource path="res://GUI/healthbar_green.png" type="Texture" id=6]
+[ext_resource path="res://Font/3X5_____.TTF" type="DynamicFontData" id=6]
 [ext_resource path="res://GUI/underlay (2).png" type="Texture" id=7]
 [ext_resource path="res://MainScenes/Healthbar.gd" type="Script" id=8]
 [ext_resource path="res://MainScenes/PhaseTime.gd" type="Script" id=9]
@@ -28,6 +28,35 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=3]
+size = 118
+extra_spacing_char = 5
+font_data = ExtResource( 6 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Label
+
+func _on_WaveManager_new_wave_started(wave):
+	text = \"Wave \" + str(int(wave))
+	$AnimationPlayer.play(\"fade_in_out\")
+"
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_in_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Main" type="Node"]
 
@@ -71,7 +100,6 @@ margin_right = 338.34
 margin_bottom = 62.2901
 rect_scale = Vector2( 1.00369, 1.06589 )
 value = 100.0
-texture_progress = ExtResource( 6 )
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -95,6 +123,26 @@ position = Vector2( 414.234, 38.7707 )
 scale = Vector2( 0.447348, 0.447348 )
 frames = SubResource( 2 )
 script = ExtResource( 13 )
+
+[node name="NewWaveLabel" type="Label" parent="Interface"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.347
+margin_right = 40.0
+margin_bottom = 14.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 3 )
+text = "Wave 1"
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/NewWaveLabel"]
+anims/fade_in_out = SubResource( 4 )
+[connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
 [connection signal="phase_signal" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_signal"]
 [connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
