@@ -17,14 +17,14 @@
 [ext_resource path="res://Sound/fastsorry1.wav" type="AudioStream" id=15]
 [ext_resource path="res://Sound/phase_change.wav" type="AudioStream" id=16]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=7]
 script/source = "extends AudioStreamPlayer
 
 func _on_WaveManager_new_wave_started(_wave):
 	play()
 "
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=8]
 script/source = "extends Navigation2D
 
 func _ready():
@@ -47,41 +47,41 @@ region = Rect2( 64, 32, 32, 32 )
 atlas = ExtResource( 11 )
 region = Rect2( 96, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 11 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 11 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 11 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "combat",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "movement",
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=14]
 size = 70
 extra_spacing_char = 5
 font_data = ExtResource( 6 )
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=15]
 script/source = "extends Label
 
 func _on_WaveManager_new_wave_started(wave):
@@ -89,7 +89,7 @@ func _on_WaveManager_new_wave_started(wave):
 	$AnimationPlayer.play(\"fade_in_out\")
 "
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=16]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -118,7 +118,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/WaveManager"]
 stream = ExtResource( 14 )
-script = SubResource( 1 )
+script = SubResource( 7 )
 
 [node name="SceneChanger" parent="GameLogic/WaveManager" instance=ExtResource( 12 )]
 
@@ -127,13 +127,13 @@ script = ExtResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/PhaseManager"]
 stream = ExtResource( 16 )
-volume_db = -11.848
+volume_db = -15.797
 pitch_scale = 0.9
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="MainNavigation" type="Navigation2D" parent="World"]
-script = SubResource( 2 )
+script = SubResource( 8 )
 
 [node name="Arena" parent="World/MainNavigation" instance=ExtResource( 4 )]
 
@@ -149,9 +149,8 @@ anchor_left = 0.5
 anchor_top = 0.226
 anchor_right = 0.5
 anchor_bottom = 0.226
-margin_left = 67.5
+margin_left = -94.0
 margin_top = 8.58801
-margin_right = 257.5
 margin_bottom = 33.588
 value = 100.0
 texture_progress = ExtResource( 10 )
@@ -161,11 +160,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UnderlayPhase" type="TextureRect" parent="Interface/PhaseTime"]
+margin_left = -13.8398
+margin_top = -12.6782
+margin_right = 351.16
+margin_bottom = 65.3219
+rect_scale = Vector2( 0.595081, 0.695919 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PhaseIndicator" type="AnimatedSprite" parent="Interface/PhaseTime"]
 position = Vector2( -57.49, 11.6104 )
 scale = Vector2( 2, 2 )
-frames = SubResource( 11 )
+frames = SubResource( 13 )
 animation = "movement"
+frame = 2
 playing = true
 script = ExtResource( 13 )
 
@@ -193,33 +204,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-<<<<<<< HEAD
-=======
-[node name="PhaseTime" type="TextureProgress" parent="Interface"]
-anchor_left = 0.5
-anchor_top = 0.226
-anchor_right = 0.5
-anchor_bottom = 0.226
-margin_left = -95.0
-margin_right = 95.0
-margin_bottom = 25.0
-value = 100.0
-texture_progress = ExtResource( 10 )
-tint_progress = Color( 1, 0.843137, 0, 1 )
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PhaseIndicator" type="AnimatedSprite" parent="Interface/PhaseTime"]
-position = Vector2( -57.49, 11.6104 )
-scale = Vector2( 2, 2 )
-frames = SubResource( 11 )
-animation = "movement"
-playing = true
-script = ExtResource( 13 )
-
->>>>>>> 48e49875dd944dd7e32204697403e2a6cbf8d97c
 [node name="NewWaveLabel" type="Label" parent="Interface"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
@@ -229,26 +213,15 @@ anchor_bottom = 0.347
 margin_right = 40.0
 margin_bottom = 14.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 14 )
 text = "Wave 1"
-script = SubResource( 13 )
+script = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/NewWaveLabel"]
-anims/fade_in_out = SubResource( 14 )
-
-[node name="UnderlayPhase" type="TextureRect" parent="Interface"]
-margin_left = 1016.18
-margin_top = 224.814
-margin_right = 1381.18
-margin_bottom = 302.814
-rect_scale = Vector2( 0.595081, 0.695919 )
-texture = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anims/fade_in_out = SubResource( 16 )
 
 [node name="BgSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
