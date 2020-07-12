@@ -38,7 +38,7 @@ animations = [ {
 } ]
 
 [sub_resource type="DynamicFont" id=3]
-size = 250
+size = 70
 extra_spacing_char = 5
 font_data = ExtResource( 6 )
 
