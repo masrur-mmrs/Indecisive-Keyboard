@@ -2,6 +2,8 @@ extends Node
 
 signal new_wave_started(wave)
 
+export var waves_to_win = 2
+export var win_scene = "res://UI elements/WinScreen/WinScreen.tscn"
 export var time_between_waves = 3
 export var autostart = true
 
@@ -22,6 +24,10 @@ func _process(_delta):
 #	_next_wave()
 
 func _next_wave():
+	if current_wave >= waves_to_win:
+		$SceneChanger.change_scene(win_scene)
+		return
+	
 	for spawner in get_tree().get_nodes_in_group("spawner"):
 		spawner.start_wave(current_wave + 1)
 	current_wave += 1
