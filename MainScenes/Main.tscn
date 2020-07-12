@@ -79,6 +79,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/WaveManager"]
 stream = ExtResource( 14 )
+volume_db = -36.861
 script = SubResource( 6 )
 
 [node name="PhaseManager" type="Timer" parent="GameLogic"]
