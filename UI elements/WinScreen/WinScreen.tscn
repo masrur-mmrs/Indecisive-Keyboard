@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sound/end_cheering.wav" type="AudioStream" id=1]
+[ext_resource path="res://Font/3X5_____.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Environment/Arena.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/exit.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+size = 250
+extra_spacing_char = 5
+font_data = ExtResource( 2 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _on_ExitButton_button_down():
+	get_tree().quit()
+"
+
+[node name="Root" type="Node"]
+
+[node name="Arena" parent="." instance=ExtResource( 3 )]
+
+[node name="WinLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+margin_right = 40.0
+margin_bottom = 14.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 3 )
+text = "You Win!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -6.582
+autoplay = true
+
+[node name="ExitButton" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+margin_left = -184.0
+margin_top = -0.0880127
+margin_right = 326.0
+margin_bottom = 328.912
+grow_horizontal = 0
+script = SubResource( 4 )
+[connection signal="button_down" from="ExitButton" to="ExitButton" method="_on_ExitButton_button_down"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/interwave_cheering.wav-9817d349d22fa24c1b43bca523587998.sample"
+
+[deps]
+
+source_file="res://Sound/interwave_cheering.wav"
+dest_files=[ "res://.import/interwave_cheering.wav-9817d349d22fa24c1b43bca523587998.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
