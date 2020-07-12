@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,14 @@
 [ext_resource path="res://GUI/PhaseSwitch1.png" type="Texture" id=11]
 [ext_resource path="res://GUI/PhaseSwitch2.png" type="Texture" id=12]
 [ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
+[ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends AudioStreamPlayer
+
+func _on_WaveManager_new_wave_started(wave):
+	play()
+"
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Navigation2D
@@ -67,6 +75,10 @@ script = ExtResource( 5 )
 
 [node name="InterwaveTimer" type="Timer" parent="GameLogic/WaveManager"]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/WaveManager"]
+stream = ExtResource( 14 )
+script = SubResource( 6 )
 
 [node name="PhaseManager" type="Timer" parent="GameLogic"]
 script = ExtResource( 1 )
@@ -142,6 +154,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/NewWaveLabel"]
 anims/fade_in_out = SubResource( 4 )
+[connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
 [connection signal="phase_signal" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_signal"]
