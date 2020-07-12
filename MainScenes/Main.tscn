@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
 [ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
 [ext_resource path="res://Sound/badasfuksong1.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sound/phase_change.wav" type="AudioStream" id=16]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends AudioStreamPlayer
@@ -122,6 +123,9 @@ script = SubResource( 1 )
 [node name="PhaseManager" type="Timer" parent="GameLogic"]
 script = ExtResource( 1 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/PhaseManager"]
+stream = ExtResource( 16 )
+
 [node name="World" type="Node2D" parent="."]
 
 [node name="MainNavigation" type="Navigation2D" parent="World"]
@@ -182,7 +186,6 @@ position = Vector2( -57.49, 11.6104 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "movement"
-frame = 1
 playing = true
 script = ExtResource( 13 )
 

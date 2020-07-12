@@ -38,7 +38,8 @@ func _on_timeout():
 		phase = Phase.COMBAT
 	else:
 		phase = Phase.MOVEMENT
-
+	
+	$AudioStreamPlayer.play()
 	emit_signal("phase_changed", phase)
 	_start_timer()
 
