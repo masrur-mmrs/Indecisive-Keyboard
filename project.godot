@@ -120,6 +120,8 @@ config/name="Restrained"
 run/main_scene="res://UI elements/Main Menu/MainMenu.tscn"
 boot_splash/image="res://splashscreen.png"
 config/icon="res://icon.png"
+config/macos_native_icon="res://icon.icns"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

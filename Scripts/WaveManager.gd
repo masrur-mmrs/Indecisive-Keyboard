@@ -4,7 +4,7 @@ signal new_wave_started(wave)
 
 export var waves_to_win = 2
 export var win_scene = "res://UI elements/WinScreen/WinScreen.tscn"
-export var time_between_waves = 3
+export var time_between_waves = 3.0
 export var autostart = true
 
 var current_wave = 0

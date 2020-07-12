@@ -62,56 +62,56 @@ atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 8 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 8 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 32, 32 )
+atlas = ExtResource( 8 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 4 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 8 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 8 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 8 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 8 )
 region = Rect2( 128, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 8 )
 region = Rect2( 160, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 8 )
 region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=20]
 animations = [ {
@@ -120,25 +120,25 @@ animations = [ {
 "name": "Telegraph",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ) ],
-"loop": false,
-"name": "Idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 8 ) ],
-"loop": false,
-"name": "Attack",
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "Walk",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": false,
 "name": "Death",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
-"loop": true,
-"name": "Walk",
+"frames": [ SubResource( 17 ), SubResource( 18 ) ],
+"loop": false,
+"name": "Attack",
 "speed": 12.0
+}, {
+"frames": [ SubResource( 19 ) ],
+"loop": false,
+"name": "Idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="GDScript" id=21]
@@ -192,7 +192,7 @@ script = ExtResource( 14 )
 
 [node name="MoveTowards" type="Node" parent="StateMachine/Move/ParallelSequence"]
 script = ExtResource( 5 )
-speed = 300.0
+speed = 250.0
 
 [node name="Stagger" type="Node" parent="StateMachine"]
 script = ExtResource( 18 )
@@ -228,10 +228,10 @@ shape = SubResource( 22 )
 [connection signal="finished" from="StateMachine/Stagger" to="Sprite" method="_on_Stagger_finished"]
 [connection signal="state_entered" from="StateMachine/Stagger" to="Sprite" method="_on_Stagger_state_entered"]
 [connection signal="state_entered" from="StateMachine/Stagger" to="." method="_on_Stagger_state_entered"]
-[connection signal="state_entered" from="StateMachine/Dying" to="Hurtbox" method="_on_Dying_state_entered"]
 [connection signal="state_entered" from="StateMachine/Dying" to="Sprite" method="_on_Dying_state_entered"]
 [connection signal="state_entered" from="StateMachine/Dying" to="Sprite" method="_on_Stagger_finished"]
-[connection signal="state_entered" from="StateMachine/Dying" to="." method="_on_Dying_state_entered"]
+[connection signal="state_entered" from="StateMachine/Dying" to="Hurtbox" method="_on_Dying_state_entered"]
 [connection signal="state_entered" from="StateMachine/Dying" to="Hitbox" method="_on_Dying_state_entered"]
+[connection signal="state_entered" from="StateMachine/Dying" to="." method="_on_Dying_state_entered"]
 [connection signal="timeout" from="StateMachine/Dying/Timer" to="StateMachine/Dying" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

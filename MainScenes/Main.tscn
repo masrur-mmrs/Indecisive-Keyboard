@@ -14,7 +14,7 @@
 [ext_resource path="res://GUI/SceneChanger.tscn" type="PackedScene" id=12]
 [ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
 [ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
-[ext_resource path="res://Sound/badasfuksong1.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sound/fastsorry1.wav" type="AudioStream" id=15]
 [ext_resource path="res://Sound/phase_change.wav" type="AudioStream" id=16]
 
 [sub_resource type="GDScript" id=1]
@@ -110,6 +110,8 @@ tracks/0/keys = {
 
 [node name="WaveManager" type="Node" parent="GameLogic"]
 script = ExtResource( 5 )
+waves_to_win = 10
+time_between_waves = 1.5
 
 [node name="InterwaveTimer" type="Timer" parent="GameLogic/WaveManager"]
 one_shot = true
@@ -186,6 +188,7 @@ position = Vector2( -57.49, 11.6104 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "movement"
+frame = 3
 playing = true
 script = ExtResource( 13 )
 
