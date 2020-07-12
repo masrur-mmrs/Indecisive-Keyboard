@@ -32,46 +32,46 @@ func _ready():
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 11 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 11 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 11 )
-region = Rect2( 64, 32, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 11 )
-region = Rect2( 96, 32, 32, 32 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 11 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 11 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 64, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 11 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 96, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "combat",
+"name": "movement",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
-"name": "movement",
+"name": "combat",
 "speed": 5.0
 } ]
 
@@ -152,6 +152,7 @@ margin_bottom = 54.3557
 rect_scale = Vector2( 1.00369, 1.06589 )
 value = 100.0
 texture_progress = ExtResource( 10 )
+tint_progress = Color( 0.00784314, 1, 0, 1 )
 nine_patch_stretch = true
 script = ExtResource( 8 )
 __meta__ = {
@@ -176,7 +177,7 @@ position = Vector2( 414.234, 38.7707 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "movement"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 13 )
 
@@ -202,8 +203,8 @@ anims/fade_in_out = SubResource( 14 )
 [node name="BgSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 autoplay = true
-[connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
+[connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
 [connection signal="phase_changed" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_changed"]
 [connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
