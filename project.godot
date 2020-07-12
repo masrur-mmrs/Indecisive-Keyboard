@@ -116,8 +116,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Indecisive keyboard"
+config/name="Restrained"
 run/main_scene="res://UI elements/Main Menu/MainMenu.tscn"
+boot_splash/image="res://splashscreen.png"
 config/icon="res://icon.png"
 
 [autoload]
@@ -128,6 +129,7 @@ Globals="*res://Scripts/Globals.gd"
 
 window/size/width=1920
 window/size/height=1024
+window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
