@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
@@ -10,8 +10,7 @@
 [ext_resource path="res://MainScenes/Healthbar.gd" type="Script" id=8]
 [ext_resource path="res://MainScenes/PhaseTime.gd" type="Script" id=9]
 [ext_resource path="res://GUI/phase_timer.png" type="Texture" id=10]
-[ext_resource path="res://GUI/PhaseSwitch1.png" type="Texture" id=11]
-[ext_resource path="res://GUI/PhaseSwitch2.png" type="Texture" id=12]
+[ext_resource path="res://GUI/phase_indicators.png" type="Texture" id=11]
 [ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
 [ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
 [ext_resource path="res://Sound/badasfuksong1.wav" type="AudioStream" id=15]
@@ -30,11 +29,48 @@ func _ready():
 	Globals.navigation = self
 "
 
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 11 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 11 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 11 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 11 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 11 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 11 )
+region = Rect2( 96, 32, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
-"name": "default",
+"name": "movement",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "combat",
 "speed": 5.0
 } ]
 
@@ -79,7 +115,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/WaveManager"]
 stream = ExtResource( 14 )
-volume_db = -36.861
 script = SubResource( 6 )
 
 [node name="PhaseManager" type="Timer" parent="GameLogic"]
@@ -134,8 +169,11 @@ __meta__ = {
 
 [node name="PhaseIndicator" type="AnimatedSprite" parent="Interface"]
 position = Vector2( 414.234, 38.7707 )
-scale = Vector2( 0.447348, 0.447348 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
+animation = "movement"
+frame = 2
+playing = true
 script = ExtResource( 13 )
 
 [node name="NewWaveLabel" type="Label" parent="Interface"]
@@ -163,6 +201,6 @@ autoplay = true
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
-[connection signal="phase_signal" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_signal"]
+[connection signal="phase_changed" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_changed"]
 [connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
 [connection signal="_health_updated" from="World/Player" to="Interface/Healthbar" method="_on_Player__health_updated"]
