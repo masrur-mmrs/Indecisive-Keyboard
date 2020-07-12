@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/PhaseManager.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://MainScenes/PhaseTime.gd" type="Script" id=9]
 [ext_resource path="res://GUI/phase_timer.png" type="Texture" id=10]
 [ext_resource path="res://GUI/phase_indicators.png" type="Texture" id=11]
+[ext_resource path="res://GUI/SceneChanger.tscn" type="PackedScene" id=12]
 [ext_resource path="res://MainScenes/PhaseIndicator.gd" type="Script" id=13]
 [ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
 [ext_resource path="res://Sound/badasfuksong1.wav" type="AudioStream" id=15]
@@ -116,6 +117,8 @@ one_shot = true
 stream = ExtResource( 14 )
 script = SubResource( 1 )
 
+[node name="SceneChanger" parent="GameLogic/WaveManager" instance=ExtResource( 12 )]
+
 [node name="PhaseManager" type="Timer" parent="GameLogic"]
 script = ExtResource( 1 )
 
@@ -173,6 +176,7 @@ position = Vector2( 414.234, 38.7707 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "movement"
+frame = 2
 playing = true
 script = ExtResource( 13 )
 
