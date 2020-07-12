@@ -15,71 +15,71 @@
 [ext_resource path="res://Sound/interwave_cheering.wav" type="AudioStream" id=14]
 [ext_resource path="res://Sound/badasfuksong1.wav" type="AudioStream" id=15]
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=1]
 script/source = "extends AudioStreamPlayer
 
 func _on_WaveManager_new_wave_started(wave):
 	play()
 "
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Navigation2D
 
 func _ready():
 	Globals.navigation = self
 "
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 11 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 11 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 11 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 11 )
 region = Rect2( 32, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 11 )
 region = Rect2( 64, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 11 )
 region = Rect2( 96, 32, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "movement",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "combat",
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=12]
 size = 70
 extra_spacing_char = 5
 font_data = ExtResource( 6 )
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Label
 
 func _on_WaveManager_new_wave_started(wave):
@@ -87,8 +87,7 @@ func _on_WaveManager_new_wave_started(wave):
 	$AnimationPlayer.play(\"fade_in_out\")
 "
 
-[sub_resource type="Animation" id=4]
-resource_name = "fade_in_out"
+[sub_resource type="Animation" id=14]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -115,7 +114,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameLogic/WaveManager"]
 stream = ExtResource( 14 )
-script = SubResource( 6 )
+script = SubResource( 1 )
 
 [node name="PhaseManager" type="Timer" parent="GameLogic"]
 script = ExtResource( 1 )
@@ -123,7 +122,7 @@ script = ExtResource( 1 )
 [node name="World" type="Node2D" parent="."]
 
 [node name="MainNavigation" type="Navigation2D" parent="World"]
-script = SubResource( 1 )
+script = SubResource( 2 )
 
 [node name="Arena" parent="World/MainNavigation" instance=ExtResource( 4 )]
 
@@ -143,12 +142,14 @@ __meta__ = {
 }
 
 [node name="Healthbar" type="TextureProgress" parent="Interface"]
-margin_left = 21.3401
-margin_top = 22.2901
-margin_right = 338.34
-margin_bottom = 62.2901
+margin_left = 23.0
+margin_top = 22.0
+margin_right = 337.0
+margin_bottom = 54.0
 rect_scale = Vector2( 1.00369, 1.06589 )
 value = 100.0
+texture_progress = ExtResource( 10 )
+nine_patch_stretch = true
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -170,9 +171,9 @@ __meta__ = {
 [node name="PhaseIndicator" type="AnimatedSprite" parent="Interface"]
 position = Vector2( 414.234, 38.7707 )
 scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
+frames = SubResource( 11 )
 animation = "movement"
-frame = 2
+frame = 3
 playing = true
 script = ExtResource( 13 )
 
@@ -185,21 +186,21 @@ anchor_bottom = 0.347
 margin_right = 40.0
 margin_bottom = 14.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Wave 1"
-script = SubResource( 5 )
+script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/NewWaveLabel"]
-anims/fade_in_out = SubResource( 4 )
+anims/fade_in_out = SubResource( 14 )
 
 [node name="BgSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 autoplay = true
-[connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="new_wave_started" from="GameLogic/WaveManager" to="Interface/NewWaveLabel" method="_on_WaveManager_new_wave_started"]
+[connection signal="new_wave_started" from="GameLogic/WaveManager" to="GameLogic/WaveManager/AudioStreamPlayer" method="_on_WaveManager_new_wave_started"]
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
 [connection signal="phase_changed" from="GameLogic/PhaseManager" to="Interface/PhaseIndicator" method="_on_PhaseManager_phase_changed"]
 [connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
