@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://GUI/Click On-SoundBible.com-1697535117.wav" type="AudioStream" id=1]
 [ext_resource path="res://GUI/Resume.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI/ReturnToMain.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/SceneChanger.tscn" type="PackedScene" id=6]
@@ -72,5 +73,8 @@ custom_styles/focus = SubResource( 4 )
 script = ExtResource( 8 )
 
 [node name="SceneChanger" parent="Pause/Buttons/Return_to_main" instance=ExtResource( 6 )]
+
+[node name="click" type="AudioStreamPlayer" parent="Pause/Buttons/Return_to_main"]
+stream = ExtResource( 1 )
 [connection signal="pressed" from="Pause/Buttons/Resume" to="Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Pause/Buttons/Return_to_main" to="Pause/Buttons/Return_to_main" method="_on_Return_to_main_pressed"]

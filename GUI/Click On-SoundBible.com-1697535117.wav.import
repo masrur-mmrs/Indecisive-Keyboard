@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Click On-SoundBible.com-1697535117.wav-eb8ee151088ec717cc31a546f2efe6eb.sample"
+
+[deps]
+
+source_file="res://GUI/Click On-SoundBible.com-1697535117.wav"
+dest_files=[ "res://.import/Click On-SoundBible.com-1697535117.wav-eb8ee151088ec717cc31a546f2efe6eb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
