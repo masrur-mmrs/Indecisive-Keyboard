@@ -19,7 +19,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends AudioStreamPlayer
 
-func _on_WaveManager_new_wave_started(wave):
+func _on_WaveManager_new_wave_started(_wave):
 	play()
 "
 
@@ -137,14 +137,15 @@ position = Vector2( 750.678, 481.357 )
 [node name="Interface" type="CanvasLayer" parent="."]
 
 [node name="Underlay" type="TextureRect" parent="Interface"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 1.90735e-06
+margin_right = 365.0
+margin_bottom = 78.0
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Healthbar" type="TextureProgress" parent="Interface"]
+[node name="Healthbar" type="TextureProgress" parent="Interface/Underlay"]
 margin_left = 23.0
 margin_top = 22.3556
 margin_right = 337.0
@@ -181,6 +182,7 @@ position = Vector2( -57.49, 11.6104 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
 animation = "movement"
+frame = 1
 playing = true
 script = ExtResource( 13 )
 
@@ -211,4 +213,4 @@ autoplay = true
 [connection signal="timeout" from="GameLogic/WaveManager/InterwaveTimer" to="GameLogic/WaveManager" method="_next_wave"]
 [connection signal="phase_changed" from="GameLogic/PhaseManager" to="Interface/PhaseTime/PhaseIndicator" method="_on_PhaseManager_phase_changed"]
 [connection signal="updated_timer" from="GameLogic/PhaseManager" to="Interface/PhaseTime" method="_on_PhaseManager_updated_timer"]
-[connection signal="_health_updated" from="World/Player" to="Interface/Healthbar" method="_on_Player__health_updated"]
+[connection signal="_health_updated" from="World/Player" to="Interface/Underlay/Healthbar" method="_on_Player__health_updated"]
